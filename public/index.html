@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天机阁 · AI 周易八字运势</title>
+  <meta name="description" content="天机阁 - 基于周易八字命理的 AI 智能运势分析">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>">
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-pattern"></div>
+
+  <!-- 头部 -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">☯</span>
+        <h1 class="logo-text">天机阁</h1>
+      </div>
+      <p class="tagline">周易八字 · AI 运势推演</p>
+      <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 简介 -->
+    <section class="intro-card">
+      <p>《易》曰：<em>"天行健，君子以自强不息"</em>。天机阁融合千年周易智慧与现代 AI 技术，为您推演八字命理、洞察运势玄机。</p>
+    </section>
+
+    <!-- 输入表单 -->
+    <section class="form-card" id="formSection">
+      <h2 class="section-title">
+        <span class="title-decoration">※</span>
+        请输入生辰信息
+        <span class="title-decoration">※</span>
+      </h2>
+
+      <form id="fortuneForm" class="fortune-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="birthYear">出生年份</label>
+            <select id="birthYear" required></select>
+          </div>
+          <div class="form-group">
+            <label for="birthMonth">月</label>
+            <select id="birthMonth" required></select>
+          </div>
+          <div class="form-group">
+            <label for="birthDay">日</label>
+            <select id="birthDay" required></select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>性别</label>
+          <div class="gender-grid">
+            <label class="gender-option">
+              <input type="radio" name="gender" value="male" checked>
+              <span class="gender-card">
+                <span class="gender-icon">♂</span>
+                <span class="gender-name">男（乾造）</span>
+              </span>
+            </label>
+            <label class="gender-option">
+              <input type="radio" name="gender" value="female">
+              <span class="gender-card">
+                <span class="gender-icon">♀</span>
+                <span class="gender-name">女（坤造）</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="birthShichen">出生时辰</label>
+          <select id="birthShichen" required>
+            <option value="" disabled selected>请选择时辰</option>
+            <option value="0">子时（23:00-01:00）</option>
+            <option value="1">丑时（01:00-03:00）</option>
+            <option value="2">寅时（03:00-05:00）</option>
+            <option value="3">卯时（05:00-07:00）</option>
+            <option value="4">辰时（07:00-09:00）</option>
+            <option value="5">巳时（09:00-11:00）</option>
+            <option value="6">午时（11:00-13:00）</option>
+            <option value="7">未时（13:00-15:00）</option>
+            <option value="8">申时（15:00-17:00）</option>
+            <option value="9">酉时（17:00-19:00）</option>
+            <option value="10">戌时（19:00-21:00）</option>
+            <option value="11">亥时（21:00-23:00）</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>选择分析领域</label>
+          <div class="category-grid">
+            <label class="category-option">
+              <input type="radio" name="category" value="comprehensive" checked>
+              <span class="category-card">
+                <span class="category-icon">🔮</span>
+                <span class="category-name">综合运势</span>
+              </span>
+            </label>
+            <label class="category-option">
+              <input type="radio" name="category" value="career">
+              <span class="category-card">
+                <span class="category-icon">💼</span>
+                <span class="category-name">事业运势</span>
+              </span>
+            </label>
+            <label class="category-option">
+              <input type="radio" name="category" value="wealth">
+              <span class="category-card">
+                <span class="category-icon">💰</span>
+                <span class="category-name">财运分析</span>
+              </span>
+            </label>
+            <label class="category-option">
+              <input type="radio" name="category" value="love">
+              <span class="category-card">
+                <span class="category-icon">💕</span>
+                <span class="category-name">感情运势</span>
+              </span>
+            </label>
+            <label class="category-option">
+              <input type="radio" name="category" value="health">
+              <span class="category-card">
+                <span class="category-icon">🏥</span>
+                <span class="category-name">健康运势</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">开始推演</span>
+          <span class="btn-loading" style="display:none">
+            <span class="taiji-spin">☯</span> 推演中...
+          </span>
+        </button>
+      </form>
+    </section>
+
+    <!-- 八字信息展示 -->
+    <section class="bazi-card" id="baziSection" style="display:none">
+      <h2 class="section-title">
+        <span class="title-decoration">※</span>
+        命主八字
+        <span class="title-decoration">※</span>
+      </h2>
+
+      <div class="bazi-info">
+        <div class="bazi-lunar" id="baziLunar"></div>
+        <div class="four-pillars" id="fourPillars"></div>
+        <div class="wuxing-chart" id="wuxingChart"></div>
+        <div class="day-master" id="dayMaster"></div>
+      </div>
+    </section>
+
+    <!-- AI 分析结果 -->
+    <section class="result-card" id="resultSection" style="display:none">
+      <h2 class="section-title">
+        <span class="title-decoration">※</span>
+        <span id="resultTitle">运势推演</span>
+        <span class="title-decoration">※</span>
+      </h2>
+
+      <div class="scroll-container">
+        <div class="result-content" id="resultContent"></div>
+      </div>
+
+      <div class="result-actions">
+        <button class="action-btn" id="copyBtn" title="复制结果">📋 复制</button>
+        <button class="action-btn" id="againBtn" title="重新分析">🔄 重新分析</button>
+      </div>
+    </section>
+
+    <!-- 查询历史 -->
+    <section class="history-card" id="historySection" style="display:none">
+      <h2 class="section-title">
+        <span class="title-decoration">※</span>
+        近期查询
+        <span class="title-decoration">※</span>
+      </h2>
+      <div class="history-list" id="historyList"></div>
+    </section>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="divider">
+      <span>☯</span>
+    </div>
+    <p class="disclaimer">
+      ⚠️ 免责声明：本站内容基于传统周易文化与 AI 技术结合生成，仅供文化交流与娱乐参考。
+      命理分析不构成任何决策建议，请理性看待。<br>
+      <em>"善易者不占"</em> —— 《荀子·大略》
+    </p>
+    <p class="copyright">天机阁 &copy; 2026 · 传承国学智慧</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

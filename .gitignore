@@ -1,0 +1,25 @@
+# 依赖
+node_modules/
+
+# 环境变量（含 API Key 等敏感信息）
+.env
+.env.*
+
+# 日志（可能含用户个人信息）
+logs/
+*.log
+
+# OS 生成文件
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 其他
+*.bak
+*.tmp
